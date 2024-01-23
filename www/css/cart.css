@@ -1,0 +1,81 @@
+.cartItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    line-height: 20px; 
+    padding-top: 20px;   
+}
+/***** MENU *****/
+.cartMenu{
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+.cartMenu li{
+    list-style: none;
+    background-color: rgb(49, 49, 74);
+    color: whitesmoke;    
+    border-radius: 15px 15px 0 0;
+    padding: 5px 10px;
+    font-size: 18px;
+    margin-right: 0px;
+}
+.disabled{       
+    opacity: 0.5;
+}
+.wrap{
+   width: 70%; 
+   border: 2px solid rgb(49, 49, 74);
+   border-radius: 15px;
+   margin-top: -2px;
+   padding: 20px;
+}
+
+/***** TABLE *****/
+.cart-table{
+    width: 100%;
+    text-align: center;  
+}
+.cart-thead{
+    height: 25px;
+    font-size: 18px;
+    font-weight: bold;    
+}
+.title{
+    text-align: left;
+}
+.total-price{
+    height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.deleteButton{
+    background-color: rgb(19, 19, 59);
+    color: whitesmoke;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+/***** BUTTONS *****/
+.buttons{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.buttons{
+    justify-content: space-between;
+}
+.one-button a,
+.buttons a{
+    min-width: 100px;
+    padding: 5px 10px;
+    margin: 20px auto;
+    background-color: rgb(49, 49, 74);
+    color: whitesmoke;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+}

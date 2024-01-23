@@ -1,0 +1,121 @@
+{block content}
+
+	<section class="paymentItems">
+                    
+        <ul class="cartMenu">
+            <li class="disabled"><a n:href="Cart:default" >Košík</a></li>
+            <li class="disabled"><a n:href="Delivery:default $orderNumber" >Dodací údaje</a></li>
+            <li><a n:href="Payment:default $orderNumber">Doprava a platba</a></li>
+        </ul>
+        {form transportForm}  
+        <div class="wrap order-view">
+        <div class="transport-payment">
+            <fieldset>
+                <legend>Doprava</legend>                                
+                <div class="radioButton" id="CP60" >                    
+                    <input type="radio" n:name="transport:CP" id="CP" checked/>                    
+                    <label for="CP">                    
+                        <span>Česká pošta</span> 
+                        <span>60,-Kč</span>
+                    </label>
+                </div>
+                <div class="radioButton" id="PPL80">                
+                    <input type="radio" n:name="transport:PPL"  id="PPL" />
+                    <label for="PPL">                    
+                        <span>PPL</span> 
+                        <span>80,-Kč</span>
+                    </label>
+                </div>
+                <div class="radioButton" id="GLS90">
+                    <input type="radio" n:name="transport:GLS" id="GLS" />
+                    <label for="GLS">                    
+                        <span>GLS</span> 
+                        <span>90,-Kč</span>
+                    </label>
+                </div>  
+            </fieldset>
+            <fieldset>                
+                <legend>Platba</legend>
+                <div class="radioButton">
+                    <input type="radio" n:name="payment:CASH" id="CASH" checked/>
+                    <label for="CASH">Hotově</label><br>
+                </div>
+                <div class="radioButton">
+                    <input type="radio" n:name="payment:CARD" id="CARD" />
+                    <label for="CARD">Platební kartou</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="order-details">
+            <fieldset>
+                <legend>Vaše objednávka č. {$orderNumber}</legend>
+                <div class="address">
+                    <div class="address-value">
+                        <label>Jméno:<p>{$orderData['firstname']} {$orderData['surname']}</p></label>
+                        <label>Adresa: <address>{$orderData['address']}<br>
+                        {$orderData['zip_code']|slice: 0,3} {$orderData['zip_code']|slice: 3,4}&emsp;{$orderData['city']}</address></label>
+                    </div>
+                </div>
+                <table class="order-table">
+                    <thead class="order-thead">
+                        <tr>
+                            <th class="title">Název knihy</th>
+                            <th>Počet kusů</th>
+                            <th>Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $cartItems as $cartItem}
+                        <tr>
+                            <td class="start">{$cartItem['title']}</td>
+                            <td>{$cartItem['pieces']}</td>
+                            <td>{$cartItem['price']},- Kč</td>
+                            <td ><a class="deleteButton" n:href="Payment:delete $orderNumber, $cartItem['id']">Odebrat</a></td>
+                        </tr>
+                        {/foreach}                        
+                        <tr>
+                            <td class="start">Doprava</td>
+                            <td></td>
+                            <td id="transportPrice"></td>                            
+                        </tr>
+                        <tr class="total-price">
+                            <td class="start">Celkem</td>
+                            <td>{$sumPieces}</td>
+                            <input type="hidden" id='sum' value="{$sumPrice}">                          
+                            <td id="sumPrice"></td>
+                        </tr>
+                    </tbody>        	       			
+                </table>
+                </div>
+            </fieldset>
+        </div>
+            
+        </div>
+        <div class="buttons">
+            <a n:href="Payment:back $orderNumber">Zpět</a>
+            <input type="submit" n:name="finish" Value="Objednat"></a>
+        </div> 
+        {/form}      		
+	</section>
+
+<script>
+    const transportPrice = document.getElementById('transportPrice');
+    const sumPrice = document.getElementById('sumPrice');
+    const sum = document.getElementById('sum');
+
+    transportPrice.textContent='60,-Kč';
+    sumPrice.textContent = String(parseInt(sum.value)+60)+',- Kč';
+    document.getElementById('CP60').addEventListener('click',()=>{
+        transportPrice.textContent='60,- Kč';
+        sumPrice.textContent = String(parseInt(sum.value)+60)+',- Kč';        
+        });
+    document.getElementById('PPL80').addEventListener('click',()=>{
+        transportPrice.textContent='80,- Kč';
+        sumPrice.textContent = String(parseInt(sum.value)+80)+',- Kč';
+        });
+    document.getElementById('GLS90').addEventListener('click',()=>{
+        transportPrice.textContent='90,- Kč';
+        sumPrice.textContent = String(parseInt(sum.value)+90)+',- Kč';
+        });
+</script>
+

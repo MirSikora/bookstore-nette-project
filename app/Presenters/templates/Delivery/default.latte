@@ -1,0 +1,29 @@
+{block content}
+
+	<section class="cartItems">              
+        <ul class="cartMenu">
+            <li class="disabled" ><a n:href="Cart:default">Košík</a></li>
+            <li><a n:href="Delivery:default $orderNumber">Dodací údaje</a></li> 
+           <li class="disabled">{if $allowed}<a n:href="Payment:default $orderNumber">{/if}Doprava a platba{if $allowed}</a>{/if}</li> 
+        </ul>
+        <form n:name=clientInfoForm class="deliveryForm">
+            <div class="wrap2">
+                <input type="hidden" n:name=registered />
+                <input type="text" n:name=firstname  />
+                <input type="text" n:name=surname />
+                <input type="email" n:name=email />
+                <input type="number" n:name=phone_number />
+                <input type="text" n:name=address />
+                <input type="text" n:name=city />
+                <input type="number" n:name=zip_code />
+                <input type="hidden" n:name=orderNumber value={$orderNumber} />
+                <label class="GDPR" for="GDPR">
+                    <input type="checkbox" n:name=GDPR id="GDPR" />Souhlas se zpracováním osobních údajů
+                </label>
+            </div>        
+            <div class="buttons second">
+                <a n:href="Cart:default">Zpátky do košíku</a>
+                <input type="submit" value="Pokračovat"/>
+            </div>
+        </form>        	
+	</section>

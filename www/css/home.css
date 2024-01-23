@@ -1,0 +1,41 @@
+.allBooks{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    gap: 10px;
+}
+.oneBook{
+    position: relative;
+    width: 300px;
+    background-color: rgba(217, 212, 209, 0.5);    
+    border-radius: 10px;
+    padding: 10px;    
+}
+.bookToCart{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+}
+.cartContent{
+    position: fixed;
+    top: 39px;
+    right: 8px;
+    min-width: 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    z-index: 100;
+}
+.cart-info{
+    font-size: 8px;
+    font-weight: 600;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 4px;
+}

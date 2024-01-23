@@ -1,0 +1,79 @@
+.paymentItems{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    line-height: 20px;
+    padding-top: 20px;     
+}
+.paymentItems form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    line-height: 20px; 
+}
+.order-view{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    gap: 20px;
+}
+.order-details{
+    min-width: 75%;
+}
+.order-details fieldset{ 
+    width: inherit;   
+    min-height: 250px;  
+}
+fieldset{
+    margin-bottom: 10px;
+    width: 25%;
+    border: 1px solid rgb(49, 49, 74);
+    border-radius: 10px;
+}
+legend{
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.radioButton{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.radioButton input{
+    margin-right: 5px;
+}
+label{
+    min-width: 150px;    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.address{
+    width: 90%;
+    display: flex;
+    justify-content: end;    
+    font-size: 14px;   
+}
+.address-value{
+    min-width: 200px;
+}
+/***** TABLE *****/
+.order-table{
+    width: 90%;
+    margin: 10px auto;
+}
+.order-thead{
+    font-size: 14px;
+}
+.order-table td{
+    text-align: center;
+}
+td.start{    
+    text-align: start;
+}   

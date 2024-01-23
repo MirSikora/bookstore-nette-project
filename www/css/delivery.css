@@ -1,0 +1,50 @@
+input[type=submit]{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+    padding: 5px 10px;
+    margin: 20px auto;
+    background-color: rgb(49, 49, 74);
+    color: whitesmoke;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+}
+.deliveryForm{
+    width: 70%;
+}
+.wrap2{
+    width: 100%;
+    border: 2px solid rgb(49, 49, 74);
+   border-radius: 15px;
+   margin-top: -2px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+}
+.wrap2 input{
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+.second{
+    width: inherit;
+    width: 100%;
+}
+.GDPR{
+    display: flex;
+    flex-direction: row;    
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+.GDPR input{
+    width: inherit;
+}

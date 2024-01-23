@@ -1,0 +1,30 @@
+{block content}
+
+	<section class="cartContent">
+		{ifset $cartPieces}<span class="cart-info">{$cartPieces} ks</span><span class="cart-info">{$cartPrice} Kč</span>{/ifset}
+	</section>
+	<section class="allBooks">
+		{ifset $emptyBooks}
+			<h1>{$emptyBooks}</h1>
+		{/ifset}
+		{ifset $books}
+    	 <article class="oneBook" n:foreach="$books as $bookItem" n:if="$bookItem"> 
+			
+        	<h2>{$bookItem->getTitle()}</h2>
+        	<h3>{$bookItem->getAuthorFirstname()} {$bookItem->getAuthorSurname()}</h3>
+        	<p>{$bookItem->getDescription()}</p>
+        	<h3 class="Price">Cena: {$bookItem->getPrice()},- Kč</h3>
+        	<p>Skladem {$bookItem->getPieces()} ks</p>
+			<form n:name=cartForm class="bookToCart">
+				<input n:name=id type="hidden" value="{$bookItem->getId()}"/>
+				<input n:name=price type="hidden" value="{$bookItem->getPrice()}"/>
+				<input n:name=pieces type="number" min="1" max="{$bookItem->getPieces()}"/>				
+				<button n:name=toCart>Vložit do košíku</button>
+			</form>
+			
+    	</article>
+		{/ifset}
+	</section>
+
+
+

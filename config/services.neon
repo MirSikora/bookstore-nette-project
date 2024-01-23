@@ -1,0 +1,15 @@
+services:
+	- App\Router\RouterFactory::createRouter
+	- App\Model\Database
+	- App\Service\HomeService
+	- App\Service\CartService
+	- App\Service\PaymentService	
+
+search:
+	-	in: %appDir%
+		classes:
+			- *Factory
+			- *Facade
+
+
+	
