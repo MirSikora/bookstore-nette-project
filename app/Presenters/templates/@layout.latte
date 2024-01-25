@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{$basePath}/css/cart.css" />
 	<link rel="stylesheet" href="{$basePath}/css/delivery.css" />
 	<link rel="stylesheet" href="{$basePath}/css/payment.css" />
+	<link rel="stylesheet" href="{$basePath}/css/login.css" />
 
 	<title>{ifset title}{include title|stripHtml} | {/ifset}BookStore</title>
 </head>
@@ -17,6 +18,11 @@
 	<header>
 		<a n:href="Home:" class="logo">BookStore</a>
 		<ul>
+			{if $user->isLoggedIn()}
+			<a n:href="Login:out"><li>Odhlášení</li></a>
+			{else}
+			<a n:href="Login:"><li>Přihlášení</li></a>
+			{/if}
 			<a n:href="Cart:"><li>Košík</li></a>
 		</ul>
 	</header>

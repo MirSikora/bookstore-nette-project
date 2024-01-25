@@ -1,9 +1,12 @@
 services:
 	- App\Router\RouterFactory::createRouter
+	- Authenticator
 	- App\Model\Database
 	- App\Service\HomeService
 	- App\Service\CartService
-	- App\Service\PaymentService	
+	- App\Service\PaymentService
+	- App\Service\ClientService	
+	- \UserService	
 
 search:
 	-	in: %appDir%

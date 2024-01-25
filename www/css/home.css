@@ -2,12 +2,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 10px;
+    padding: 20px 10px;
     gap: 10px;
 }
 .oneBook{
     position: relative;
     width: 300px;
+    height: 230px;
     background-color: rgba(217, 212, 209, 0.5);    
     border-radius: 10px;
     padding: 10px;    
@@ -38,4 +39,24 @@
     border: 1px solid black;
     border-radius: 25px;
     padding: 4px;
+}
+.description{
+    margin-bottom: 10px;
+}
+.priceAndPieces{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+#PiecesToCart{
+    width: 45px;
+    margin-right: 10px;
+    border: 1px solid rgb(49, 49, 74);
+    border-radius: 10px;
+}
+#PiecesToCart::-webkit-inner-spin-button {
+    opacity: 1;    
+}
+.bookToCart input[type=submit]{
+    margin: inherit;
 }

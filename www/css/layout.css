@@ -7,6 +7,33 @@ a {
   text-decoration: none;
   color: inherit;  
 }
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number]{
+    background-color: transparent;    
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(49, 49, 74);
+    padding: 5px 5px;
+    font-size: 14px;
+}
+input::placeholder{
+    color:rgb(201, 200, 200);
+}
+input[type=submit]{
+  outline: none;
+  border: none;
+  cursor: pointer;
+  min-width: 100px;
+  padding: 5px 10px;
+  margin: 20px auto;
+  background-color: rgb(49, 49, 74);
+  color: whitesmoke;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 10px;
+}
 header {  
   position: fixed;
   top: 0;
@@ -26,8 +53,13 @@ header {
   font-weight: bolder;
   font-size: 30px;
 }
-header ul {
+header ul {  
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px;
+
 }
 footer {
   position: fixed;
