@@ -1,16 +1,4 @@
-input[type=submit]{
-    outline: none;
-    border: none;
-    cursor: pointer;
-    min-width: 100px;
-    padding: 5px 10px;
-    margin: 20px auto;
-    background-color: rgb(49, 49, 74);
-    color: whitesmoke;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 10px;
-}
+
 .deliveryForm{
     width: 70%;
 }
@@ -27,11 +15,10 @@ input[type=submit]{
    gap: 10px;
 }
 .wrap2 input{
-    width: 80%;
-    padding: 5px;
-    border-radius: 5px;
-    outline: none;
-    font-size: 14px;
+    width: 60%;    
+}
+.deliveryForm [type=number]::-webkit-inner-spin-button {
+    display: none;
 }
 .second{
     width: inherit;

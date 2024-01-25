@@ -9,7 +9,6 @@ use Nette\Application\Responses;
 use Nette\Http;
 use Tracy\ILogger;
 
-
 /**
  * Handles uncaught exceptions and errors, and logs them.
  */

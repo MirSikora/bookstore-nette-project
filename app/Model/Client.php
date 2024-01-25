@@ -7,7 +7,6 @@ use Nette\SmartObject;
 
 class Client
 {
-
     use SmartObject;
 
     private int $client_id;
@@ -20,13 +19,13 @@ class Client
     private int $phone_number;
     private string $email;
 
-    public function __construct(int $client_id, Registered $registered, string $firstname, string $surname, string $adress, string $city, int $zip_code, int $phone_number, string $email)
+    public function __construct(int $client_id, Registered $registered, string $firstname, string $surname, string $address, string $city, int $zip_code, int $phone_number, string $email)
     {
         $this->setClientId($client_id);
         $this->setRegistered($registered);
         $this->setFirstname($firstname);
         $this->setSurname($surname);
-        $this->setAddress($adress);        
+        $this->setAddress($address);        
         $this->setCity($city);
         $this->setZipCode($zip_code);
         $this->setPhoneNumber($phone_number);
@@ -104,6 +103,6 @@ class Client
     public function setEmail(string $email)
     {
         $this->email = $email;
-    }
+    }    
 
 }

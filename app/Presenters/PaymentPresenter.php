@@ -7,20 +7,23 @@ namespace App\Presenters;
 use App\Model\Payment;
 use App\Model\Registered;
 use App\Model\Transport;
+use App\Service\ClientService;
 use App\Service\PaymentService;
 use Nette;
-
 use Nette\Application\UI\Form;
 
 final class PaymentPresenter extends Nette\Application\UI\Presenter{
     
     /**
 	 * @var \App\Service\PaymentService
-	 */
+     * @var \App\Service\ClientService
+     */
     protected PaymentService $paymentService;
+    protected ClientService $clientService;
 
-    public function __construct(PaymentService $paymentService){
-        $this->paymentService=$paymentService;
+    public function __construct(PaymentService $paymentService, ClientService $clientService){
+        $this->paymentService = $paymentService;
+        $this->clientService = $clientService;
     }
 
     public function renderDefault(string $id){
@@ -81,27 +84,33 @@ final class PaymentPresenter extends Nette\Application\UI\Presenter{
             
         $session = $this->getSession();
         $sectionOrder = $this->session->getSection('ORDER'); 
-         
-        if($sectionOrder['registered'] =='NO'){
+
+        $reviewedClient = false;
+        if($sectionOrder['registered'] == 'YES'){
+            $reviewedClient = $this->clientService->checkClientData(intval($sectionOrder["client_id"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
+        }
+
+        if($sectionOrder['registered'] == 'YES' and $reviewedClient){
+
+            $client_id = intval($sectionOrder['client_id']);
+
+        }else{
             
-            $client_id = $this->paymentService->getLastClientId() + 1;            
-            $this->paymentService->addNewClient($client_id, Registered::tryFrom($sectionOrder["registered"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
+            $client_id = $this->clientService->getLastClientId() + 1;            
+            $this->clientService->addNewClient($client_id, Registered::tryFrom($sectionOrder["registered"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
 
-        } else {
+        }
 
-            $client_id = $sectionOrder['client_id'];
-
-        } 
         $this->paymentService->createNewOrder($sectionOrder['orderNumber'], $client_id, $transport, $payment);
 
-        $sectionBook = $this->session->getSection('BOOKS');
+        $sectionBooks = $this->session->getSection('BOOKS');
 
-        foreach($sectionBook as $item){
+        foreach($sectionBooks as $item){
             $this->paymentService->addBookToOrder($sectionOrder['orderNumber'],$item['id'],$item['pieces']);
         }
 
         $sectionOrder->setExpiration('0.001 second');
-        $sectionBook->setExpiration('0.001 second');
+        $sectionBooks->setExpiration('0.001 second');
         $this->flashMessage('Vaše objednávka byla přijata ke zpracování.');
         $this->redirect('Home:default');    
         
