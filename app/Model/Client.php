@@ -5,12 +5,23 @@ namespace App\Model;
 
 use Nette\SmartObject;
 
+/**
+ * @property int $client_id
+ * @property-read bool $registered
+ * @property string $firstname
+ * @property string $surname
+ * @property string $address
+ * @property string $city
+ * @property int $zip_code
+ * @property int $phone_number
+ * @property string $email
+ */
 class Client
 {
     use SmartObject;
 
     private int $client_id;
-    private Registered $registered;
+    private bool $registered;
     private string $firstname;
     private string $surname;
     private string $address;   
@@ -19,7 +30,7 @@ class Client
     private int $phone_number;
     private string $email;
 
-    public function __construct(int $client_id, Registered $registered, string $firstname, string $surname, string $address, string $city, int $zip_code, int $phone_number, string $email)
+    public function __construct(int $client_id, bool $registered, string $firstname, string $surname, string $address, string $city, int $zip_code, int $phone_number, string $email)
     {
         $this->setClientId($client_id);
         $this->setRegistered($registered);
@@ -40,14 +51,13 @@ class Client
     {
         $this->client_id = $client_id;
     }
-    public function getRegistered()
+    public function isRegistered()
     {
-        return $this->registered;
+        return $this->registered>0;
     }
-    public function setRegistered(Registered $registered)
-    {
-        $this->registered = $registered;
-    }
+    public function setRegistered($registered){
+        $this->registered = $registered > 0 ? true : false;
+    }    
     public function getFirstname()
     {
         return $this->firstname;

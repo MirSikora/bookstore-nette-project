@@ -5,10 +5,10 @@ namespace App\Service;
 
 use App\Model\Client;
 use App\Model\Database;
-use App\Model\Registered;
 
 final class ClientService extends Database{
 
+    // Return the last saved client id in database.
     public function getLastClientId(){
         $explorer = $this->explorer;
         $explorer->beginTransaction();
@@ -17,7 +17,8 @@ final class ClientService extends Database{
         return $last_id;
     }
     
-    public function addNewClient(int $client_id, Registered $registered,string $firstname,string $surname,string $address,string $city,int $zip_code,int $phone_number,string $email){
+    // Add a new client to database.
+    public function addNewClient(int $client_id, bool $registered,string $firstname,string $surname,string $address,string $city,int $zip_code,int $phone_number,string $email){
         $explorer = $this->explorer;
         $explorer->beginTransaction();
         try{
@@ -39,6 +40,7 @@ final class ClientService extends Database{
         } 
     }
 
+    // When client is registered, this function connects him with the user.
     public function connectClientWithUser(int $client_id){
 
         $explorer = $this->explorer;
@@ -70,7 +72,7 @@ final class ClientService extends Database{
         $explorer->beginTransaction();
         $row = $this->explorer->table('client')->where('client_id',$client_id)->fetch();        
         $explorer->commit();
-        return new Client($row['client_id'], Registered::tryFrom($row['registered']), $row['firstname'],$row['surname'],$row['address'],$row['city'],$row['zip_code'],$row['phone_number'],$row['email'],);
+        return new Client($row['client_id'], boolval($row['registered']), $row['firstname'],$row['surname'],$row['address'],$row['city'],$row['zip_code'],$row['phone_number'],$row['email'],);
     }
 
     public function checkClientData(int $client_id, string $firstname,string $surname,string $address,string $city,int $zip_code,int $phone_number,string $email){

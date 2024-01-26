@@ -9,6 +9,7 @@ class Authenticator implements \Nette\Security\Authenticator {
         private Nette\Security\Passwords $passwords
     ){}
 
+    // This function control user's nickname and password and return SimpleIdentity
     public function authenticate(string $nickname, string $password): IIdentity {
         $user = $this->userService->findUser($nickname);
         

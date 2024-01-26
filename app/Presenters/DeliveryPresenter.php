@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use App\Model\Registered;
 use App\Service\ClientService;
 use Nette;
 use Nette\Application\UI\Form;
@@ -49,7 +48,7 @@ final class DeliveryPresenter extends Nette\Application\UI\Presenter
             $registeredUser = true;
         }
 
-        $form->addHidden('registered')->setDefaultValue($registeredUser ? 'YES' : 'NO');
+        $form->addHidden('registered')->setDefaultValue($registeredUser ? true : false);
         $form->addHidden('client_id')->setDefaultValue($registeredUser ? $client->getClientId() : 0);
         $form->addText('firstname')->setHtmlAttribute(!($section['orderNumber'] and $registeredUser) ? "placeholder = 'Jméno'" : '')->setDefaultValue($section['orderNumber'] ? $section['firstname'] : ($registeredUser ? $client->getFirstname() : ''))->setRequired('Zadejte prosím Vaše jméno');
         $form->addText('surname')->setHtmlAttribute(!($section['orderNumber'] and $registeredUser) ? "placeholder='Příjmení'" : '')->setDefaultValue($section['orderNumber'] ? $section['surname'] : ($registeredUser ? $client->getSurname() : ''))->setRequired('Zadejte prosím Vaše příjmení');
@@ -74,6 +73,7 @@ final class DeliveryPresenter extends Nette\Application\UI\Presenter
         foreach ($values as $key => $value) {
 
             $section->set($key, $value);
+            
         }
         $this->redirect('Payment:default', $values['orderNumber']);
     }

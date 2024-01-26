@@ -2,15 +2,21 @@ services:
 	- App\Router\RouterFactory::createRouter
 	- Authenticator
 	- App\Model\Database
-	- App\Service\HomeService
-	- App\Service\CartService
-	- App\Service\PaymentService
-	- App\Service\ClientService	
+	- App\Service\BookService
+	- App\Service\ClientService
+	- App\Service\OrderService	
 	- \UserService	
 
 search:
 	-	in: %appDir%
 		classes:
+			- Model\Book
+			- Model\Client
+			- Model\Database
+			- Model\Order
+			- Model\Payment			
+			- Model\Transport
+			- Model\User
 			- *Factory
 			- *Facade
 
