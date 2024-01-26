@@ -5,6 +5,15 @@ namespace App\Model;
 
 use Nette\SmartObject;
 
+/**
+ * @property int $order_id
+ * @property string $order_number
+ * @property string $order_date
+ * @property int $client_id
+ * @property Transport $transport
+ * @property Payment $payment
+ * @property array $books
+ */
 class Order
 {
 

@@ -5,24 +5,23 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use App\Model\Payment;
-use App\Model\Registered;
 use App\Model\Transport;
 use App\Service\ClientService;
-use App\Service\PaymentService;
+use App\Service\OrderService;
 use Nette;
 use Nette\Application\UI\Form;
 
 final class PaymentPresenter extends Nette\Application\UI\Presenter{
     
     /**
-	 * @var \App\Service\PaymentService
+	 * @var \App\Service\OrderService
      * @var \App\Service\ClientService
      */
-    protected PaymentService $paymentService;
+    protected OrderService $orderService;
     protected ClientService $clientService;
 
-    public function __construct(PaymentService $paymentService, ClientService $clientService){
-        $this->paymentService = $paymentService;
+    public function __construct(OrderService $orderService, ClientService $clientService){
+        $this->orderService = $orderService;
         $this->clientService = $clientService;
     }
 
@@ -86,27 +85,28 @@ final class PaymentPresenter extends Nette\Application\UI\Presenter{
         $sectionOrder = $this->session->getSection('ORDER'); 
 
         $reviewedClient = false;
-        if($sectionOrder['registered'] == 'YES'){
+        
+        if(boolval($sectionOrder['registered'])){
             $reviewedClient = $this->clientService->checkClientData(intval($sectionOrder["client_id"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
         }
 
-        if($sectionOrder['registered'] == 'YES' and $reviewedClient){
+        if(boolval($sectionOrder['registered']) and $reviewedClient){
 
             $client_id = intval($sectionOrder['client_id']);
 
         }else{
             
             $client_id = $this->clientService->getLastClientId() + 1;            
-            $this->clientService->addNewClient($client_id, Registered::tryFrom($sectionOrder["registered"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
+            $this->clientService->addNewClient($client_id,boolval($sectionOrder["registered"]),$sectionOrder["firstname"],$sectionOrder["surname"],$sectionOrder["address"],$sectionOrder["city"],$sectionOrder["zip_code"],$sectionOrder["phone_number"],$sectionOrder["email"]);
 
         }
 
-        $this->paymentService->createNewOrder($sectionOrder['orderNumber'], $client_id, $transport, $payment);
+        $this->orderService->createNewOrder($sectionOrder['orderNumber'], $client_id, $transport, $payment);
 
         $sectionBooks = $this->session->getSection('BOOKS');
 
         foreach($sectionBooks as $item){
-            $this->paymentService->addBookToOrder($sectionOrder['orderNumber'],$item['id'],$item['pieces']);
+            $this->orderService->addBookToOrder($sectionOrder['orderNumber'],$item['id'],$item['pieces']);
         }
 
         $sectionOrder->setExpiration('0.001 second');

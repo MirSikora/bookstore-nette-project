@@ -5,26 +5,26 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use Nette;
-use App\Service\HomeService;
+use App\Service\BookService;
 use Nette\Application\UI\Form;
 
 final class HomePresenter extends Nette\Application\UI\Presenter
 {
     /**
-	 * @var \App\Service\HomeService
+	 * @var \App\Service\BookService
 	 */
-    protected HomeService $homeService;    
+    protected BookService $bookService;    
        
 
-    public function __construct(HomeService $homeService){
-        $this->homeService=$homeService;                       
+    public function __construct(BookService $bookService){
+        $this->bookService=$bookService;                       
     }
 
     public function renderDefault(){
         $session = $this->getSession();
         $section = $session->getSection('BOOKS');        
         
-        $books = $this->homeService->getAllBooks(); 
+        $books = $this->bookService->getAllBooks(); 
         
         
             foreach ($books as $book) {            
@@ -80,7 +80,7 @@ final class HomePresenter extends Nette\Application\UI\Presenter
         $form->reset();
         $session = $this->getSession();
         $section = $session->getSection('BOOKS');
-        $books = $this->homeService->getAllBooks();
+        $books = $this->bookService->getAllBooks();
         $dbPieces = $books[$values['id']]->getPieces();         
         $addPieces = $values['pieces'];        
         

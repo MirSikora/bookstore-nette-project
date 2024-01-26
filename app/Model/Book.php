@@ -5,6 +5,16 @@ namespace App\Model;
 
 use Nette\SmartObject;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string $author_firstname
+ * @property string $author_surname
+ * @property string $description
+ * @property string $image
+ * @property float $price
+ * @property int $pieces
+ */
 class Book{
 
     use SmartObject;
@@ -14,15 +24,17 @@ class Book{
     private string $author_firstname;
     private string $author_surname;
     private string $description;
+    private string $image;
     private float $price;
     private int $pieces;
 
-    public function __construct(int $id, string $title,string $author_firstname,string $author_surname,string $description,float $price,int $pieces){
+    public function __construct(int $id, string $title,string $author_firstname,string $author_surname,string $description, string $image, float $price,int $pieces){
         $this->setId($id);
         $this->setTitle($title);
         $this->setAuthorFirstname($author_firstname);
         $this->setAuthorSurname($author_surname);
         $this->setDescription($description);
+        $this->setImage($image);
         $this->setPrice($price);
         $this->setPieces($pieces);
     }
@@ -55,6 +67,12 @@ class Book{
     }
     public function getDescription(){
         return $this->description;
+    }
+    public function setImage(string $image){
+        $this->image = $image;
+    }
+    public function getImage(){
+        return $this->image;
     }
     public function setPrice(float $price){
         $this->price = $price;

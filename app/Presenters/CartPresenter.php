@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
+use App\Service\OrderService;
 use Nette;
-use App\Service\CartService;
 
 final class CartPresenter extends Nette\Application\UI\Presenter{
 
     /**
-	 * @var \App\Service\CartService
+	 * @var \App\Service\OrderService
 	 */
-    protected CartService $cartService; 
+    protected OrderService $orderService; 
           
     
-    public function __construct(CartService $cartService){
-        $this->cartService=$cartService;                                     
+    public function __construct(OrderService $orderService){
+        $this->orderService=$orderService;                                     
     }
 
     public function renderDefault(){        
@@ -46,11 +46,13 @@ final class CartPresenter extends Nette\Application\UI\Presenter{
             $this->template->sumPieces = $sumPieces;  
             $this->template->sumPrice = $sumPrice;
             
-            $orderId = $this->cartService->getOrderId() + 1;
+            // Add a new order number to the order
+            $orderId = $this->orderService->getOrderId() + 1;
             $orderNumber = time(). 'O' . ($orderId < 10 ? '000' : ($orderId<100 ? '00' : '0')).$orderId;
             $this->template->orderNumber = $orderNumber;            
            
-        }else{            
+        }else{  
+            // When client delete gradually everything to zero, this delete the session section ORDER           
             $this->session->getSection('ORDER')->setExpiration('0.001 second');
             
             $this->template->emptyCart = 'Váš nákupní košík je prázdný';

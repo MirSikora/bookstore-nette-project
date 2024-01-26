@@ -1,7 +1,15 @@
 <?php declare(strict_types=1);
+use Nette\SmartObject;
 
+/**
+ * @property int $id
+ * @property string $nickname
+ * @property string $password
+ * @property string $role
+ */
 class User{
 
+    use SmartObject;
     private int $id;
     private string $nickname;
     private string $password;

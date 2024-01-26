@@ -6,12 +6,25 @@
     gap: 10px;
 }
 .oneBook{
-    position: relative;
-    width: 300px;
-    height: 230px;
     background-color: rgba(217, 212, 209, 0.5);    
     border-radius: 10px;
-    padding: 10px;    
+    display: flex;
+    flex-direction: row;
+    max-width: 580px;
+    box-shadow: 5px 5px 5px;
+}
+.oneBook img{
+    width: 180px;
+    border-radius: 10px 0 0 10px;
+}
+.oneBookDetails{
+    position: relative;    
+    max-width: 400px;
+    height: 250px;    
+    padding: 10px;
+    display: flex;    
+    flex-direction: column;
+    gap: 10px;
 }
 .bookToCart{
     position: absolute;

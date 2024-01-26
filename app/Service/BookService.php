@@ -6,8 +6,9 @@ namespace App\Service;
 use App\Model\Book;
 use App\Model\Database;
 
-final class HomeService extends Database{
+final class BookService extends Database{
     
+    // Get all books from database
     public function getAllBooks(){
         $explorer = $this->explorer;
         $explorer->beginTransaction();
@@ -15,7 +16,7 @@ final class HomeService extends Database{
         $explorer->commit();
         $books = array();
         while($row = $rows->fetch()){
-            $book = new Book($row['id'],$row['title'],$row['author_firstname'],$row['author_surname'],$row['description'],$row['price'],$row['pieces']);            
+            $book = new Book($row['id'],$row['title'],$row['author_firstname'],$row['author_surname'],$row['description'],$row['image'],$row['price'],$row['pieces']);            
             $books[$row['id']]=$book;
         }   
         return $books;

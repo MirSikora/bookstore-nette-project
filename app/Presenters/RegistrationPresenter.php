@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-use App\Model\MyValidators;
 use Nette;
 use App\Service\ClientService;
-use Nette\Forms\Controls\BaseControl;
-use Nette\Forms\Validator;
 use \UserService;
-use App\Model\Registered;
 use Nette\Application\UI\Form;
 
 final class RegistrationPresenter extends Nette\Application\UI\Presenter
@@ -59,7 +55,7 @@ final class RegistrationPresenter extends Nette\Application\UI\Presenter
 
             // Create a new client
             $client_id = $this->clientService->getLastClientId() + 1;            
-            $this->clientService->addNewClient($client_id, Registered::YES,$values["firstname"],$values["surname"],$values["address"],$values["city"],$values["zip_code"],$values["phone_number"],$values["email"]);
+            $this->clientService->addNewClient($client_id, true ,$values["firstname"],$values["surname"],$values["address"],$values["city"],$values["zip_code"],$values["phone_number"],$values["email"]);
 
             // Create a new user
             $this->userService->addNewUser($values['nickname'],$values['password']);
