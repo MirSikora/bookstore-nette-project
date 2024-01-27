@@ -32,6 +32,8 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
 
     public function actionOut(){
         $this->getUser()->logout(true);
+
+        // Delete user's order in session's sections
         $session = $this->getSession();
         $sectionOrder = $this->session->getSection('ORDER');
         $sectionBooks = $this->session->getSection('BOOKS');
