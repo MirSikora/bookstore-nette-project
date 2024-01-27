@@ -17,12 +17,12 @@
 }
 .order-view{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;    
+    flex-direction: row;      
     gap: 20px;
+   
 }
 .order-details{
-    min-width: 75%;
+    width: 100%;
 }
 .order-details fieldset{ 
     width: inherit;   
@@ -48,9 +48,11 @@ legend{
     margin-right: 5px;
 }
 label{
-    min-width: 150px;    
+    width: 95%; 
+    min-width: 150px;   
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
 
 }
@@ -77,3 +79,15 @@ label{
 td.start{    
     text-align: start;
 }   
+
+@media (max-width: 890px) {
+    .order-view{
+        flex-wrap: wrap;
+    }
+    .transport-payment{
+        width: 100%;
+    }    
+    fieldset{
+        width: inherit;
+    }
+}

@@ -64,6 +64,7 @@ final class DeliveryPresenter extends Nette\Application\UI\Presenter
         return $form;
     }
 
+    // Save all user's data in session section 'ORDER'
     public function completeDelivery(Form $form, $values)
     {
         $values = $form->getValues();

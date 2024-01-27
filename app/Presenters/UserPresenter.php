@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Presenters;
 use BasePresenter;
 use \UserService;
-use Nette;
-
 
 final class UserPresenter extends BasePresenter
 {
