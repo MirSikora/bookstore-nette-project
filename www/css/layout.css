@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  font-family: 'Times New Roman', Times, serif;
+}
 a {
   text-decoration: none;
   color: inherit;  
@@ -19,7 +22,7 @@ input[type=number]{
     font-size: 14px;
 }
 input::placeholder{
-    color:rgb(201, 200, 200);
+    color:white;
 }
 input[type=submit]{
   outline: none;
@@ -33,6 +36,8 @@ input[type=submit]{
   font-size: 16px;
   text-align: center;
   border-radius: 10px;
+  font-family: inherit;
+  font-family: 'Times New Roman', Times, serif;
 }
 header {  
   position: fixed;
@@ -44,7 +49,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #80d0c7;
+  color: rgb(225, 231, 142);
   font-size: 20px;
   padding: 0 10px; 
   z-index: 1; 
@@ -66,15 +71,15 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   background-color: rgb(35, 35, 41);  
-  color: #80d0c7;
+  color: rgb(225, 231, 142);
   font-size: 20px;
   text-align: center;
-  padding-top: 15px;
+  padding: 15px 0;
 }
 main {
-  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);  
+  background-image: linear-gradient( 110.1deg,  rgba(34,126,34,1) 2.9%, rgba(168,251,60,1) 90.3% );
   min-height: 100vh;
   padding: 50px 0;
 }
@@ -82,5 +87,11 @@ main {
   background-color: rgb(199, 199, 10);
   text-align: center;  
   font-size: 16px;  
-  padding: 5px 0;
+  padding: 7px 0;
+}
+@media (max-width: 480px) {
+  footer{
+    position: inherit;
+    position: relative;
+  }  
 }

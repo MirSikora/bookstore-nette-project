@@ -14,7 +14,7 @@ class Authenticator implements \Nette\Security\Authenticator {
         $user = $this->userService->findUser($nickname);
         
         if(($user === null)or($this->passwords->verify($password, $user->getPassword()) === false))
-            throw new \Nette\Security\AuthenticationException('Špatně zadané uživatelské jméno nebo heslo');        
+            throw new \Nette\Security\AuthenticationException('Nesprávně zadané uživatelské jméno nebo heslo!');        
 
         return new \Nette\Security\SimpleIdentity ($user->getId(), $user->getRole(), ['nickname' => $nickname]);
 

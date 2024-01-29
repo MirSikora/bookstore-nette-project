@@ -6,7 +6,7 @@
     gap: 10px;
 }
 .oneBook{
-    background-color: rgba(217, 212, 209, 0.5);    
+    background-color: rgb(225, 231, 142);
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -17,20 +17,22 @@
     width: 180px;
     border-radius: 10px 0 0 10px;
 }
-.oneBookDetails{
-    position: relative;    
-    max-width: 400px;
-    height: 250px;    
+.oneBookDetails{    
+    max-width: 400px;    
     padding: 10px;
+    display: flex;    
+    flex-direction: column;
+    justify-content: space-between;    
+}
+.bookTop{
     display: flex;    
     flex-direction: column;
     gap: 10px;
 }
-.bookToCart{
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-
+.bookBottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .cartContent{
     position: fixed;
@@ -55,11 +57,6 @@
 }
 .description{
     margin-bottom: 10px;
-}
-.priceAndPieces{
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
 }
 #PiecesToCart{
     width: 45px;

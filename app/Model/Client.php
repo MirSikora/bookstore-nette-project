@@ -113,6 +113,6 @@ class Client
     public function setEmail(string $email)
     {
         $this->email = $email;
-    }    
+    }   
 
 }

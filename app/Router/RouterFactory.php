@@ -16,10 +16,11 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 		$router->addRoute('<presenter>/<action>[/<id>]', 'Home:default');
-		$router->addRoute('Cart:default', 'Cart:default');
-		$router->addRoute('Cart:delete', 'Cart:delete');		
+		$router->addRoute('Cart:default', 'Cart:default');				
 		$router->addRoute('Delivery/<id>', 'Delivery:default/<id>');
-		$router->addRoute('Payment/<id>', 'Payment:default/<id>');		
+		$router->addRoute('Payment/<id>', 'Payment:default/<id>');
+		$router->addRoute('Login', 'Login:default');
+		$router->addRoute('Registration', 'Registration:default');		
 		return $router;
 	}
 }

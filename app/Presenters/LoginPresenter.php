@@ -9,9 +9,9 @@ use Nette\Application\UI\Form;
 
 final class LoginPresenter extends Nette\Application\UI\Presenter
 {
-    public function createComponentLoginForm(): Nette\Application\UI\Form {        
+    public function createComponentLoginForm(): Form {        
         
-        $form = new Nette\Application\UI\Form();
+        $form = new Form();
         $form->addText('nickname', '')->setHtmlAttribute('placeholder', 'Přihlašovací jméno')->setRequired('Zadejte přihlašovací jméno.');
         $form->addPassword('password', '')->setHtmlAttribute('placeholder', 'Heslo')->setRequired('Zadejte heslo.');
         $form->addSubmit('send','Přihlásit se');
@@ -19,14 +19,14 @@ final class LoginPresenter extends Nette\Application\UI\Presenter
         return $form;        
     }
 
-    public function logUser(Nette\Application\UI\Form $form){
+    public function logUser(Form $form){
         $values = $form->getValues();
         try{
             $this->getUser()->login($values->nickname, $values->password);           
-            $this->flashMessage('Vítejte ' . $values->nickname . '!');
+            $this->flashMessage('Vítejte v novém e-shopu s knihami!');
             $this->redirect('User:'); 
         }catch (Nette\Security\AuthenticationException $e){
-            $this->flashMessage($e->getMessage(),'Přihlášení se nezdařilo');
+            $this->flashMessage($e->getMessage());
         }                                        
     }
 

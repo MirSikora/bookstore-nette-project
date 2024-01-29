@@ -1,45 +1,45 @@
 {block content}
 
-	<section class="cartItems">
-        {ifset $emptyCart}
-        <h1>{$emptyCart}</h1>
-        {/ifset}
-        {ifset $cartItems}        
-        <ul class="cartMenu">
-            <li ><a n:href="Cart:default">Košík</a></li>
-            <li class="disabled">{if $allowed}<a n:href='Delivery:default $orderNumber'>{/if}Dodací údaje{if $allowed}</a>{/if}</li>
-            <li class="disabled">{if $allowed}<a n:href="Payment:default $orderNumber">{/if}Doprava a platba{if $allowed}</a>{/if}</li>
-        </ul>
-        <div class="wrap">
-        <table class="cart-table">
-            <thead class="cart-thead">
-                <tr>
-                    <th class="title">Název knihy</th>
-                    <th>Počet kusů</th>
-                    <th>Cena</th>
-                </tr>
-            </thead>
-            <tbody>
-                {foreach $cartItems as $cartItem}
-                <tr>
-                    <td class="title">{$cartItem['title']}</td>
-                    <td>{$cartItem['pieces']}</td>
-                    <td>{$cartItem['price']},- Kč</td>
-                    <td ><a class="deleteButton" n:href="Cart:delete $cartItem['id']">Odebrat</a></td>
-                </tr>
-                {/foreach}
-                <tr class="total-price">
-                    <td class="title">Celkem</td>
-                    <td>{$sumPieces}</td>
-                    <td>{$sumPrice},- Kč</td>
-                </tr>
-            </tbody>        	       			
-    	</table>
-        </div>
-        
-        <div class="buttons">
-        <a n:href="Cart:deleteAll">Vyprázdnit košík</a>
-        <a n:href="Delivery:default $orderNumber">Pokračovat</a>
-        </div>
-        {/ifset}		
-	</section>
+<section class="cartItems">
+    {ifset $emptyCart}
+    <h1>{$emptyCart}</h1>
+    {/ifset}
+    {ifset $cartItems}        
+    <ul class="cartMenu">
+        <li ><a n:href="Cart:default">Košík</a></li>
+        <li class="disabled">{if $allowed}<a n:href='Delivery:default $orderNumber'>{/if}Dodací údaje{if $allowed}</a>{/if}</li>
+        <li class="disabled">{if $allowed}<a n:href="Payment:default $orderNumber">{/if}Doprava a platba{if $allowed}</a>{/if}</li>
+    </ul>
+    <div class="wrap">
+    <table class="cart-table">
+        <thead class="cart-thead">
+            <tr>
+                <th class="title">Název knihy</th>
+                <th>Počet kusů</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $cartItems as $cartItem}
+            <tr>
+                <td class="title">{$cartItem['title']}</td>
+                <td>{$cartItem['pieces']}</td>
+                <td>{$cartItem['price']},- Kč</td>
+                <td ><a class="deleteButton" title="Odebrat" n:href="Cart:delete $cartItem['id']">X</a></td>
+            </tr>
+            {/foreach}
+            <tr class="total-price">
+                <td class="title">Celkem</td>
+                <td>{$sumPieces}</td>
+                <td>{$sumPrice},- Kč</td>
+            </tr>
+        </tbody>        	       			
+    </table>
+    </div>
+    
+    <div class="buttons">
+    <a n:href="Cart:deleteAll">Vyprázdnit košík</a>
+    <a n:href="Delivery:default $orderNumber">Pokračovat</a>
+    </div>
+    {/ifset}		
+</section>

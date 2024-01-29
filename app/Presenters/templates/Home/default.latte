@@ -1,19 +1,22 @@
 {block content}
 
-	<section class="cartContent">
-		{ifset $cartPieces}<span class="cart-info">{$cartPieces} ks</span><span class="cart-info">{$cartPrice} Kč</span>{/ifset}
-	</section>
-	<section class="allBooks">
-		{ifset $emptyBooks}
-			<h1>{$emptyBooks}</h1>
-		{/ifset}
-		{ifset $books}
-    	 <article class="oneBook" n:foreach="$books as $bookItem" n:if="$bookItem"> 
-			<img src="{$basePath}/images/{$bookItem->getImage()}">
-			<div class="oneBookDetails">
+<section class="cartContent">
+	{ifset $cartPieces}<span class="cart-info">{$cartPieces} ks</span><span class="cart-info">{$cartPrice} Kč</span>{/ifset}
+</section>
+<section class="allBooks">
+	{ifset $emptyBooks}
+		<h1>{$emptyBooks}</h1>
+	{/ifset}
+	{ifset $books}
+		<article class="oneBook" n:foreach="$books as $bookItem" n:if="$bookItem"> 
+		<img src="{$basePath}/images/{$bookItem->getImage()}">
+		<div class="oneBookDetails">
+			<div class="bookTop">
 				<h2>{$bookItem->getTitle()}</h2>
 				<h3>{$bookItem->getAuthorFirstname()} {$bookItem->getAuthorSurname()}</h3>
 				<p class="description">{$bookItem->getDescription()}</p>
+			</div>
+			<div class="bookBottom">
 				<div class="priceAndPieces">
 					<h3 class="Price">Cena: {$bookItem->getPrice()},- Kč</h3>
 					<p>Skladem {$bookItem->getPieces()} ks</p>
@@ -25,9 +28,10 @@
 					<input type="submit" n:name=toCart value="Do košíku" >
 				</form>
 			</div>
-    	</article>
-		{/ifset}
-	</section>
+		</div>
+	</article>
+	{/ifset}
+</section>
 
 
 
