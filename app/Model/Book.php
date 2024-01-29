@@ -86,4 +86,11 @@ class Book{
     public function getPieces(){
         return $this->pieces;
     }
+
+    public static function create(?\Nette\Database\Table\ActiveRow $activeRow): ?self{
+
+        if($activeRow===null) return null;
+
+        return new Book(...$activeRow->toArray());
+    }
 }

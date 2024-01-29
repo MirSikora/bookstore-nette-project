@@ -28,12 +28,12 @@ final class RegistrationPresenter extends Nette\Application\UI\Presenter
         $form->addText('firstname', '')->setHtmlAttribute('placeholder', 'Jméno')->setRequired('Zadejte prosím jméno');
         $form->addText('surname', '')->setHtmlAttribute('placeholder', 'Příjmení')->setRequired('Zadejte prosím příjmení');
         $form->addEmail('email', '')->setHtmlAttribute('placeholder', 'Email')->setRequired('Zadejte prosím email');
-        $form->addInteger('phone_number', '')->setHtmlAttribute('placeholder', 'Telefon')->setRequired('Zadejte prosím telefon');
+        $form->addInteger('phone_number', '')->setHtmlAttribute('placeholder', 'Telefon')->addRule($form::MinLength, 'Zadejte platné telefonní číslo', 9)->setRequired('Zadejte prosím telefon');
         $form->addText('address', '')->setHtmlAttribute('placeholder', 'Adresa')->setRequired('Zadejte prosím adresu');
         $form->addText('city', '')->setHtmlAttribute('placeholder', 'Město')->setRequired('Zadejte prosím město');
         $form->addInteger('zip_code', '')->setHtmlAttribute('placeholder', 'PSČ')->setRequired('Zadejte prosím PSČ');
         $form->addText('nickname', '')->setHtmlAttribute('placeholder', 'Přihlašovací jméno')->setRequired('Zadejte prosím přihlašovací jméno');
-        $form->addPassword('password', '')->setHtmlAttribute('placeholder', 'Heslo')->setRequired('Zadejte prosím heslo');
+        $form->addPassword('password', '')->setHtmlAttribute('placeholder', 'Heslo')->addRule($form::MinLength,'Heslo musí mít minimálně %d znaků.', 5)->addRule($form::PatternInsensitive, 'Heslo musí obsahovat číslici.','.*[0-9].*')->addRule($form::PatternInsensitive, 'Heslo musí obsahovat speciální znak (:!@#$.,+-).', '.*[:!@#$.,+-].*')->setRequired('Zadejte prosím heslo');
         $form->addPassword('passwordVerify', '')->setHtmlAttribute('placeholder', 'Heslo znovu')
         ->setRequired('Zadejte prosím heslo ještě jednou pro kontrolu')
         ->addRule($form::Equal, 'Hesla se neshodují', $form['password'])

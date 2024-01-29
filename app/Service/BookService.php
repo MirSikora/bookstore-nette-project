@@ -16,8 +16,9 @@ final class BookService extends Database{
         $explorer->commit();
         $books = array();
         while($row = $rows->fetch()){
-            $book = new Book($row['id'],$row['title'],$row['author_firstname'],$row['author_surname'],$row['description'],$row['image'],$row['price'],$row['pieces']);            
-            $books[$row['id']]=$book;
+            
+            $books[$row['id']] = Book::create($row);
+            
         }   
         return $books;
     }

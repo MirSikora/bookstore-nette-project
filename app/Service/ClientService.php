@@ -58,6 +58,7 @@ final class ClientService extends Database{
         } 
     }
    
+    // Return client data based on the user id 
     public function getClientByUserId(int $user_id){
         $explorer = $this->explorer;
         $explorer->beginTransaction();
@@ -67,6 +68,7 @@ final class ClientService extends Database{
         return $client;
     }
 
+    // Return client data based on the client id
     public function getClientById(int $client_id):Client{
         $explorer = $this->explorer;
         $explorer->beginTransaction();
@@ -75,6 +77,7 @@ final class ClientService extends Database{
         return new Client($row['client_id'], boolval($row['registered']), $row['firstname'],$row['surname'],$row['address'],$row['city'],$row['zip_code'],$row['phone_number'],$row['email'],);
     }
 
+    // Control client data, if something hasn't changed
     public function checkClientData(int $client_id, string $firstname,string $surname,string $address,string $city,int $zip_code,int $phone_number,string $email){
         $clientFromDB = $this->getClientById($client_id);
         switch($clientFromDB){
